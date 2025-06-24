@@ -48,7 +48,7 @@ const createUserProgram  = async (userId, request) => {
   return prismaClient.$transaction(async (tx) => {
 
     // A. Nonaktifkan semua program yang sedang aktif untuk pengguna ini
-    await tx.user_Porgram.updateMany({
+    await tx.user_Program.updateMany({
       where: {
         user_id: userId,
         status: 'active',
@@ -58,7 +58,7 @@ const createUserProgram  = async (userId, request) => {
       },
     });
 
-    return tx.user_Porgram.create({
+    return tx.user_Program.create({
       data: {
         start_date: new Date(),
         status: 'active',

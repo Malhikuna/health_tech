@@ -1,3 +1,5 @@
+import {prismaClient} from "../application/database.js";
+
 export const calculateTargets = (profileData) => {
   const { gender, weight, height, age, activity_level, goal } = profileData;
 
@@ -32,4 +34,28 @@ export const calculateTargets = (profileData) => {
     tdee: Math.round(tdee),
     bmr: Math.round(bmr),
   };
+}
+
+export const getPersonalizedMealCalories = async (recipeId, dailyTargetCalories) => {
+  let mealTargetCalories;
+  mealTargetCalories = dailyTargetCalories / 3;
+
+  const recipeComponents = await prismaClient.recipe_inredient.findMany({
+    where: { recipeId: recipeId },
+    include: { ingredient: true },
+  });
+
+  if (!recipeComponents.length) return 0;
+
+  let totalBaseCalories = 0;
+  recipeComponents.forEach(rc => {
+    totalBaseCalories += rc.base_quantity * rc.ingredient.calories_per_unit;
+  });
+
+  if (totalBaseCalories === 0) return 0;
+
+  const scalingFactor = mealTargetCalories / totalBaseCalories;
+  const finalCalories = totalBaseCalories * scalingFactor;
+
+  return Math.round(finalCalories);
 }

@@ -4,6 +4,8 @@
 
 Endpoint : get /api/user/current
 
+Deskripsi : Mendapatkan detail profil lengkap dari pengguna yang sedang login.
+
 Headers :
 - Authorization : Bearer token
 
@@ -34,6 +36,8 @@ Response Body Error :
 ## Create Program For User
 
 Endpoint : post /api/user/program
+
+Deskripsi: Memulai program.
 
 Headers :
 - Authorization : Bearer token

@@ -48,7 +48,7 @@ describe('POST /api/user/program', function () {
     await removeTestUser();
   })
 
-  it('should can get current user', async () => {
+  it('should can create program for user', async () => {
     const token = await getToken();
     const {id: programId} = await getProgram();
 
