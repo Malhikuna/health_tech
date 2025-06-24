@@ -4,6 +4,8 @@
 
 Endpoint : post /api/auth/register
 
+Deskripsi : Mendaftarkan pengguna baru.
+
 Request Body :
 
 ```json
@@ -45,6 +47,8 @@ Response Body Error :
 ## Login User API
 
 Endpoint : post /api/auth/login
+
+Deskripsi: Login pengguna yang sudah terdaftar.
 
 Request Body :
 

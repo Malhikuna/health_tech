@@ -21,7 +21,7 @@ model User {
   first_name   String         @db.VarChar(100)
   last_name    String?        @db.VarChar(100)
   created_at   DateTime       @default(dbgenerated("(CURRENT_TIMESTAMP)")) @db.Timestamp()
-  User_Porgram User_Porgram[]
+  User_Program User_Program[]
 
   @@map("users")
 }
@@ -34,7 +34,7 @@ model Program {
   cover_image_url String         @db.VarChar(255)
   duration_days   Int
   Daily_Plan      Daily_Plan[]
-  User_Porgram    User_Porgram[]
+  User_Program    User_Program[]
 
   @@map("programs")
 }
@@ -46,7 +46,7 @@ enum Status {
 }
 
 // Tabel program yanng dipilih oleh User
-model User_Porgram {
+model User_Program {
   id                         Int             @unique @default(autoincrement())
   user_id                    String
   program_id                 Int
@@ -67,7 +67,6 @@ model Recipe {
   name                 String             @db.VarChar(255)
   description          String             @db.Text
   intructions          String             @db.Text
-  colories             Int
   image_url            String             @db.VarChar(255)
   cooking_time_minutes Int
   breakfastPlans       Daily_Plan[]       @relation("BreakfastRecipe")
@@ -85,7 +84,7 @@ model Ingredient {
   calories_per_unit Float              @db.Double
   protein_per_unit  Float              @db.Double
   carbs_per_unit    Float              @db.Double
-  fats_per_uni      Float              @db.Double
+  fats_per_unit     Float              @db.Double
   Recipe_inredient  Recipe_inredient[]
 
   @@map("ingredients")
@@ -124,10 +123,10 @@ model User_Activity {
   user_program_id     Int
   day_number          Int
   activity_date       DateTime     @db.Date
-  breakfast_completed Int          @db.TinyInt
-  lunch_completed     Int          @db.TinyInt
-  dinner_completed    Int          @db.TinyInt
-  user_program        User_Porgram @relation(fields: [user_program_id], references: [id])
+  breakfast_completed Int          @default(0) @db.TinyInt
+  lunch_completed     Int          @default(0) @db.TinyInt
+  dinner_completed    Int          @default(0) @db.TinyInt
+  user_program        User_Program @relation(fields: [user_program_id], references: [id])
 
   @@map("user_activities")
 }

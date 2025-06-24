@@ -4,6 +4,8 @@
 
 Endpoint : get /api/dashboard/today
 
+Deskripsi : Mendapatkan semua data yang dibutuhkan untuk menampilkan halaman dashboard "Hari Ini"
+
 Headers :
 - Authorization : Bearer token
 
