@@ -15,14 +15,12 @@ export default function LandingPage() {
   return (
     <div className="">
       <div
-        className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat rounded-b-3xl"
+        className="relative w-full h-[734.7px] bg-cover object-contain bg-center bg-no-repeat rounded-b-3xl"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute bottom-0 right-0 bg-white h-[70px] w-[400px] rounded-br-[20px] rounded-tl-[20px] flex items-center justify-center">
-          <button className="text-2xl border-4 border-[#003732] px-[70px] py-[20px] rounded-full text-[#003732] font-bold">
-            MULAI PROGRAM
-          </button>
-        </div>
+        <button className="absolute bottom-0 right-0 text-2xl border-4 border-[#003732] px-[70px] py-[20px] rounded-full text-[#003732] font-bold">
+          MULAI PROGRAM
+        </button>
 
         <div className="px-[100px] py-[20px]">
           <nav className="w-full flex justify-between items-center">
@@ -152,11 +150,18 @@ export default function LandingPage() {
           <div className="gap-5 flex mt-[20px]">
             <div className="space-y-4 w-2/3">
               <div className="gap-3 flex">
-                <Input className="w-1/2" placeholder="Nama" />
-                <Input className="w-1/2" placeholder="No Telephone" />
+                <Input className="w-1/2 placeholder-white" placeholder="Nama" />
+                <Input
+                  className="w-1/2 placeholder-white"
+                  placeholder="No Telephone"
+                />
               </div>
-              {/* <input type="email" placeholder="Email" className="w-full p-2 bg-teal-600 text-white rounded-lg" /> */}
-              <Input className="w-full" placeholder="Email" type="email" />
+
+              <Input
+                className="w-full placeholder-white"
+                placeholder="Email"
+                type="email"
+              />
               <textarea
                 placeholder="Pesan"
                 className="w-full h-[200px] p-2 bg-[#42887E] text-white placeholder-white rounded-3xl font-bold"
@@ -196,7 +201,7 @@ export default function LandingPage() {
             <div className="flex gap-4">
               <MapPin></MapPin>
               <p className="font-bold">
-                Jalan Dr. Setiabudhi No. 193 (Kampus IV)
+                Jalan Dr.Setiabudhi No.193 (Kampus IV)
               </p>
             </div>
           </Button>
