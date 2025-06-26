@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.placeholder-white::-webkit-input-placeholder {
+  color: #ffffff;
+}
+.placeholder-white::-moz-placeholder {
+  color: #ffffff;
+}
+.placeholder-white:-ms-input-placeholder {
+  color: #ffffff;
+}
+.placeholder-white::-ms-input-placeholder {
+  color: #ffffff;
+}
+.placeholder-white::placeholder {
+  color: #ffffff;
+}

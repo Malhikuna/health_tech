@@ -16,7 +16,7 @@ export const registerUser = async (userData) => {
     } else if (err.request) {
       return { success: false, errors: 'Gagal terhubung ke server' };
     } else {
-      return { success: false, errors: 'Terjadi kesalahan tak terduga' };
+      return { success: false, errors: 'Terjadi kesalahan' };
     }
   }
 };
