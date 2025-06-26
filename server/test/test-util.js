@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import {JWT_EXPIRES_IN, JWT_SECRET} from "../src/application/env.js";
 import {calculateTargets} from "../src/util/nutritionCalculator.js";
 import {dailyPlanData, ingredientData, recipeData, recipeIngredientsData} from "./dummydata.js";
+import {getWIBDate} from "../src/util/date.js";
 
 export const removeTestUser = async () => {
   await prismaClient.user.deleteMany({
@@ -20,6 +21,7 @@ export const createTestUser = async () => {
       password: await bcrypt.hash("rahasia", 10),
       first_name: "test",
       last_name: "test",
+      created_at: getWIBDate()
     }
   })
 }
@@ -42,30 +44,32 @@ export const getToken = async () => {
 /* Program */
 
 export const createProgram = async () => {
-  await prismaClient.program.create({
-    data: {
-      name: "Program Tantangan Hari Makan Bersih (Clean Eating)",
-      description: "Program detoksifikasi ringan untuk membersihkan sistem pencernaan, meningkatkan energi, dan memulai kebiasaan makan sehat dengan fokus pada makanan utuh minim olahan.",
-      cover_image_url: "/images/clean-eating.jpg",
-      duration_days: 7
-    }
+  await prismaClient.program.createMany({
+    data:[
+      {
+        name: "Program Tantangan Hari Makan Bersih (Clean Eating)",
+        description: "Program detoksifikasi ringan untuk membersihkan sistem pencernaan, meningkatkan energi, dan memulai kebiasaan makan sehat dengan fokus pada makanan utuh minim olahan.",
+        cover_image_url: "/images/clean-eating.jpg",
+        duration_days: 7
+      },
+      {
+        name: "Program Turun Berat Badan 30 Hari",
+        description: "...",
+        cover_image_url: "/images/turun-bb.jpg",
+        duration_days: 30
+      }
+    ]
   })
 }
 
 export const removeProgram = async () => {
-  const {id: programId} = await getProgram();
-
-  await prismaClient.program.delete({
-    where: {
-      id: programId,
-    }
-  })
+  await prismaClient.program.deleteMany();
 }
 
 export const getProgram = async () => {
-  return  prismaClient.program.findFirst({
+  return prismaClient.program.findFirst({
     where: {
-      name: "Program Tantangan Hari Makan Bersih (Clean Eating)"
+      name: "Program Tantangan Hari Makan Bersih (Clean Eating)",
     },
     select: {
       id: true,
@@ -115,15 +119,7 @@ export const createUserProgram = async () => {
 }
 
 export const removeUserProgram = async () => {
-  const {id: userId} = await getUserCurrent();
-  const {id: programId} = await getProgram();
-
-  await prismaClient.user_Program.deleteMany({
-    where: {
-      user_id: userId,
-      program_id: programId,
-    }
-  })
+  await prismaClient.user_Program.deleteMany()
 }
 
 export const getUserProgram = async () => {
@@ -154,19 +150,13 @@ export const createUserActivity = async () => {
     data: {
       user_program_id: userProgramId,
       day_number: currentDayNumber,
-      activity_date: today,
+      activity_date: getWIBDate(),
     },
   })
 }
 
 export const removeUserActivity = async () => {
-  const {id: userProgramId} = await getUserProgram();
-
-  await prismaClient.user_Activity.deleteMany({
-    where: {
-      user_program_id: userProgramId,
-    }
-  })
+  await prismaClient.user_Activity.deleteMany()
 };
 
 export const getUserActivity = async () => {
@@ -207,13 +197,13 @@ export const removeIngredients = async () => {
 /* Recipe Ingredients */
 
 export const createRecipeIngredients = async () => {
-  await prismaClient.recipe_inredient.createMany({
+  await prismaClient.recipe_Ingredient.createMany({
     data: recipeIngredientsData
   })
 }
 
 export const removeRecipeIngredients = async () => {
-  await prismaClient.recipe_inredient.deleteMany();
+  await prismaClient.recipe_Ingredient.deleteMany();
 }
 
 /* Daily Plan */
@@ -287,6 +277,16 @@ export const removeDailyPlan = async () => {
   const {id: programId} = await getProgram();
 
   await prismaClient.daily_Plan.deleteMany({
+    where: {
+      program_id: programId
+    }
+  })
+}
+
+export const getDailyPlan = async () => {
+  const {id: programId} = await getProgram();
+
+  return prismaClient.daily_Plan.findFirst({
     where: {
       program_id: programId
     }

@@ -20,7 +20,7 @@ model User {
   password     String         @db.VarChar(100)
   first_name   String         @db.VarChar(100)
   last_name    String?        @db.VarChar(100)
-  created_at   DateTime       @default(dbgenerated("(CURRENT_TIMESTAMP)")) @db.Timestamp()
+  created_at   DateTime       @db.Timestamp()
   User_Program User_Program[]
 
   @@map("users")
@@ -28,7 +28,7 @@ model User {
 
 // Tabel Program
 model Program {
-  id              Int            @unique @default(autoincrement())
+  id              String         @id @default(uuid()) @db.Char(36)
   name            String         @db.VarChar(255)
   description     String         @db.Text
   cover_image_url String         @db.VarChar(255)
@@ -45,11 +45,11 @@ enum Status {
   cancelled
 }
 
-// Tabel program yanng dipilih oleh User
+// Tabel Program yanng Dipilih oleh User
 model User_Program {
-  id                         Int             @unique @default(autoincrement())
+  id                         String          @id @default(uuid()) @db.Char(36)
   user_id                    String
-  program_id                 Int
+  program_id                 String
   start_date                 DateTime        @db.Date
   status                     Status          @default(active)
   profile_data               Json
@@ -63,35 +63,36 @@ model User_Program {
 
 // Tabel Resep
 model Recipe {
-  id                   Int                @unique @default(autoincrement())
-  name                 String             @db.VarChar(255)
-  description          String             @db.Text
-  intructions          String             @db.Text
-  image_url            String             @db.VarChar(255)
+  id                   Int                 @id @default(autoincrement())
+  name                 String              @db.VarChar(255)
+  description          String              @db.Text
+  intructions          String              @db.Text
+  image_url            String              @db.VarChar(255)
   cooking_time_minutes Int
-  breakfastPlans       Daily_Plan[]       @relation("BreakfastRecipe")
-  lunchPlans           Daily_Plan[]       @relation("LunchRecipe")
-  dinnerPlans          Daily_Plan[]       @relation("DinnerRecipe")
-  Recipe_inredient     Recipe_inredient[]
+  breakfastPlans       Daily_Plan[]        @relation("BreakfastRecipe")
+  lunchPlans           Daily_Plan[]        @relation("LunchRecipe")
+  dinnerPlans          Daily_Plan[]        @relation("DinnerRecipe")
+  Recipe_Ingredient    Recipe_Ingredient[]
 
   @@map("recipes")
 }
 
+// Tabel Bahan-Bahan
 model Ingredient {
-  id                Int                @unique @default(autoincrement())
-  name              String             @db.VarChar(255)
-  unit              String             @db.VarChar(50)
-  calories_per_unit Float              @db.Double
-  protein_per_unit  Float              @db.Double
-  carbs_per_unit    Float              @db.Double
-  fats_per_unit     Float              @db.Double
-  Recipe_inredient  Recipe_inredient[]
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(255)
+  unit              String              @db.VarChar(50)
+  calories_per_unit Float               @db.Double
+  protein_per_unit  Float               @db.Double
+  carbs_per_unit    Float               @db.Double
+  fats_per_unit     Float               @db.Double
+  Recipe_Ingredient Recipe_Ingredient[]
 
   @@map("ingredients")
 }
 
-model Recipe_inredient {
-  id            Int        @unique @default(autoincrement())
+model Recipe_Ingredient {
+  id            Int        @id @default(autoincrement())
   recipe_id     Int
   ingredient_id Int
   base_quantity Float      @db.Double
@@ -103,8 +104,8 @@ model Recipe_inredient {
 
 // Tabel Perencanaan Harian
 model Daily_Plan {
-  id                  Int     @unique @default(autoincrement())
-  program_id          Int
+  id                  String  @id @default(uuid()) @db.Char(36)
+  program_id          String
   day_number          Int
   breakfast_recipe_id Int
   lunch_recipe_id     Int
@@ -119,10 +120,10 @@ model Daily_Plan {
 
 // Tabel Aktivitas Pengguna
 model User_Activity {
-  id                  Int          @unique @default(autoincrement())
-  user_program_id     Int
+  id                  String       @id @default(uuid()) @db.Char(36)
+  user_program_id     String
   day_number          Int
-  activity_date       DateTime     @db.Date
+  activity_date       DateTime     @db.Timestamp()
   breakfast_completed Int          @default(0) @db.TinyInt
   lunch_completed     Int          @default(0) @db.TinyInt
   dinner_completed    Int          @default(0) @db.TinyInt

@@ -6,6 +6,7 @@ import {v4 as uuid} from "uuid";
 import jwt from 'jsonwebtoken';
 import {JWT_EXPIRES_IN, JWT_SECRET} from "../application/env.js";
 import bcrypt from "bcryptjs";
+import {getWIBDate} from "../util/date.js";
 
 const register = async (request) => {
   const user = validate(registerUserValidation, request);
@@ -30,6 +31,7 @@ const register = async (request) => {
       password: true,
       first_name: true,
       last_name: true,
+      created_at: getWIBDate()
     }
   })
 

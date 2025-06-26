@@ -3,7 +3,7 @@ import joi from "joi";
 const getUserValidation = joi.string().min(32).required();
 
 const createUserProgramValidation = joi.object({
-  program_id: joi.number().required(),
+  program_id: joi.string().min(32).required(),
   profile_data: joi.object({
     height: joi.number().required(),
     weight: joi.number().required(),

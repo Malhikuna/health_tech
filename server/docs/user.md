@@ -35,7 +35,7 @@ Response Body Error :
 
 ## Create Program For User
 
-Endpoint : post /api/user/program
+Endpoint : post /api/user/start-program
 
 Deskripsi: Memulai program.
 
