@@ -1,6 +1,7 @@
 import {prismaClient} from "../application/database.js";
 import {ResponseError} from "../error/response.error.js";
 import {getPersonalizedMealCalories} from "../util/nutritionCalculator.js";
+import {getWIBDate} from "../util/date.js";
 
 const getDashboardToday = async (userId) => {
   const {
@@ -25,6 +26,9 @@ const getDashboardToday = async (userId) => {
       user_program_id: userProgramId,
       day_number: currentDayNumber,
     },
+    orderBy: {
+      activity_date: 'desc'
+    }
   });
 
   if (!dailyLog) {
@@ -33,7 +37,7 @@ const getDashboardToday = async (userId) => {
       data: {
         user_program_id: userProgramId,
         day_number: currentDayNumber,
-        activity_date: today,
+        activity_date: getWIBDate(),
       },
     });
   }

@@ -36,7 +36,7 @@ describe('GET /api/user/current', function () {
   });
 })
 
-describe('POST /api/user/program', function () {
+describe('POST /api/user/start-program', function () {
   beforeEach(async () => {
     await createTestUser();
     await createProgram();
@@ -53,7 +53,7 @@ describe('POST /api/user/program', function () {
     const {id: programId} = await getProgram();
 
     const result = await supertest(web)
-      .post('/api/user/program')
+      .post('/api/user/start-program')
       .set('Authorization', `Bearer ${token}`)
       .send({
         program_id: programId,

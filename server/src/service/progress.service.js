@@ -2,6 +2,7 @@ import {validate} from "../validation/validation.js";
 import {createLogMealValidation} from "../validation/progress.validation.js";
 import {prismaClient} from "../application/database.js";
 import {ResponseError} from "../error/response.error.js";
+import {getWIBDate} from "../util/date.js";
 
 const createLogMeal = async (userId, request) => {
   request = validate(createLogMealValidation, request);
@@ -47,7 +48,7 @@ const createLogMeal = async (userId, request) => {
     data: {
       user_program_id: userProgramId,
       day_number: currentDayNumber,
-      activity_date: new Date(),
+      activity_date: getWIBDate(),
       ...mealType
     }
   })

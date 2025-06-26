@@ -40,8 +40,8 @@ export const getPersonalizedMealCalories = async (recipeId, dailyTargetCalories)
   let mealTargetCalories;
   mealTargetCalories = dailyTargetCalories / 3;
 
-  const recipeComponents = await prismaClient.recipe_inredient.findMany({
-    where: { recipeId: recipeId },
+  const recipeComponents = await prismaClient.recipe_Ingredient.findMany({
+    where: { recipe_id: recipeId },
     include: { ingredient: true },
   });
 

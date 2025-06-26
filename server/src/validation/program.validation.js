@@ -1,3 +1,3 @@
 import joi from 'joi'
 
-export const getProgramValidation = joi.number().min(1).required();
+export const getProgramValidation = joi.string().min(32).required();

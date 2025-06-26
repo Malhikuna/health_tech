@@ -4,7 +4,13 @@ import {validate} from "../validation/validation.js";
 import {getProgramValidation} from "../validation/program.validation.js";
 
 const getPrograms = async () => {
-  return prismaClient.program.findMany()
+  const programs = await prismaClient.program.findMany()
+
+  if (programs.length === 0) {
+    throw new ResponseError(401, "Program tidak ditemukan");
+  }
+
+  return programs;
 }
 
 const getProgram = async (id) => {

@@ -17,7 +17,7 @@ const getUserCurrent = async (req, res, next) => {
 
 const createUserProgram = async (req, res, next) => {
   try {
-    const {id, program_id, name, start_date, calculated_target_calories} = await userService.createUserProgram(req.user.id , req.body);
+    const {id, program_id, start_date, calculated_target_calories, program: {name}} = await userService.createUserProgram(req.user.id , req.body);
     res.status(200).json({
       success: true,
       message: 'Berhasil mengikuti program',

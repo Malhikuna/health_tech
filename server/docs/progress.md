@@ -16,7 +16,7 @@ Request Body :
   "programId": 1,
   "dayNumber": 1,
   "mealType": "dinner",
-  "completed": true
+  "completed": 1 // true
 } 
 ```
 

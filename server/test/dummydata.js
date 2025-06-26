@@ -1,3 +1,5 @@
+import {getProgram} from "./test-util.js";
+
 export const recipeData = [
   {
     id: 1,
@@ -388,63 +390,67 @@ export const recipeIngredientsData = [
   },
 ];
 
-export const dailyPlanData = [
-  // --- JADWAL UNTUK PROGRAM ID: 3 (Tantangan 7 Hari Makan Bersih) ---
+export const dailyPlanData = async () => {
+  const {id} = await getProgram();
 
-  // Hari ke-1
-  {
-    program_id: 3,
-    day_number: 1,
-    breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
-    lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
-    dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
-  },
-  // Hari ke-2
-  {
-    program_id: 3,
-    day_number: 2,
-    breakfast_recipe_id: 4, // Bubur Kacang Hijau Sehat
-    lunch_recipe_id: 2,     // Opor Ayam Sehat
-    dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
-  },
-  // Hari ke-3
-  {
-    program_id: 3,
-    day_number: 3,
-    breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
-    lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
-    dinner_recipe_id: 2,      // Opor Ayam Sehat
-  },
-  // Hari ke-4
-  {
-    program_id: 3,
-    day_number: 4,
-    breakfast_recipe_id: 4, // Bubur Kacang Hijau Sehat
-    lunch_recipe_id: 2,     // Opor Ayam Sehat
-    dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
-  },
-  // Hari ke-5
-  {
-    program_id: 3,
-    day_number: 5,
-    breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
-    lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
-    dinner_recipe_id: 2,      // Opor Ayam Sehat
-  },
-  // Hari ke-6
-  {
-    program_id: 3,
-    day_number: 6,
-    breakfast_recipe_id: 4, // Bubur Kacang Hijau Sehat
-    lunch_recipe_id: 2,     // Opor Ayam Sehat
-    dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
-  },
-  // Hari ke-7
-  {
-    program_id: 3,
-    day_number: 7,
-    breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
-    lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
-    dinner_recipe_id: 2,      // Opor Ayam Sehat
-  },
-]
+  return [
+    // --- JADWAL UNTUK PROGRAM ID: 3 (Tantangan 7 Hari Makan Bersih) ---
+
+    // Hari ke-1
+    {
+      program_id: id,
+      day_number: 1,
+      breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
+      lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
+      dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
+    },
+    // Hari ke-2
+    {
+      program_id: id,
+      day_number: 2,
+      breakfast_recipe_id: 4, // Bubur Kacang Hijau Sehat
+      lunch_recipe_id: 2,     // Opor Ayam Sehat
+      dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
+    },
+    // Hari ke-3
+    {
+      program_id: id,
+      day_number: 3,
+      breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
+      lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
+      dinner_recipe_id: 2,      // Opor Ayam Sehat
+    },
+    // Hari ke-4
+    {
+      program_id: id,
+      day_number: 4,
+      breakfast_recipe_id: 4, // Bubur Kacang Hijau Sehat
+      lunch_recipe_id: 2,     // Opor Ayam Sehat
+      dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
+    },
+    // Hari ke-5
+    {
+      program_id: id,
+      day_number: 5,
+      breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
+      lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
+      dinner_recipe_id: 2,      // Opor Ayam Sehat
+    },
+    // Hari ke-6
+    {
+      program_id: id,
+      day_number: 6,
+      breakfast_recipe_id: 4, // Bubur Kacang Hijau Sehat
+      lunch_recipe_id: 2,     // Opor Ayam Sehat
+      dinner_recipe_id: 3,      // Sayur Bening & Tahu Kukus
+    },
+    // Hari ke-7
+    {
+      program_id: id,
+      day_number: 7,
+      breakfast_recipe_id: 5, // Sarapan Praktis & Padat Gizi
+      lunch_recipe_id: 1,     // Paket Nasi & Tempe Bakar
+      dinner_recipe_id: 2,      // Opor Ayam Sehat
+    },
+  ]
+}
