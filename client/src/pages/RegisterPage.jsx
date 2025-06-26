@@ -67,7 +67,7 @@ const RegisterPage = () => {
                 name="email"
                 placeholder="email"
                 value={form.email}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -77,7 +77,7 @@ const RegisterPage = () => {
                 name="first_name"
                 placeholder="First Name"
                 value={form.first_name}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -87,7 +87,7 @@ const RegisterPage = () => {
                 name="last_name"
                 placeholder="Last Name"
                 value={form.last_name}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -97,7 +97,7 @@ const RegisterPage = () => {
                 name="password"
                 placeholder="password"
                 value={form.password}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -107,7 +107,7 @@ const RegisterPage = () => {
                 name="confirmPassword"
                 placeholder="confirmPassword"
                 value={form.confirmPassword}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
