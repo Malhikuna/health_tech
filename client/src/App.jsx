@@ -7,6 +7,8 @@ import Program30Hari from "./pages/Program30Hari";
 import Program7Hari from "./pages/Program7Hari";
 import FormDataFisik from "./pages/FormDataFisik";
 
+
+
 function App() {
   return (
     <Routes>
@@ -17,7 +19,6 @@ function App() {
       <Route path="/program30Hari" element={<Program30Hari />} />
       <Route path="/program7Hari" element={<Program7Hari />} />
       <Route path="/datafisik" element={<FormDataFisik/>} />
-
     </Routes>
   );
 }
