@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { registerUser } from "../services/authService";
 import bgLogin from "../assets/image/bgLogin.png";
 import imgRegister from "../assets/image/imgRegister.png";
@@ -120,7 +120,7 @@ const RegisterPage = () => {
                 </Button>
                 <p className="font-bold text-white mt-3">
                   Sudah punya akun?{" "}
-                  <span className="text-[#42887E]">Silahkan Login</span>
+                  <Link to="/login" className="text-[#42887E]">Silahkan Login</Link>
                 </p>
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 {message && <p style={{ color: "green" }}>{message}</p>}

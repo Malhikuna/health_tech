@@ -80,6 +80,7 @@ describe('Insert Data', function () {
   });
 })
 
+
 describe('Delete Data', function () {
   beforeEach(async () => {
     await removeDailyPlan();
