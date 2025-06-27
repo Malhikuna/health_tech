@@ -14,6 +14,7 @@ import axios from "axios";
 
 export default function LandingPage() {
   const [programs, setPrograms] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,6 +25,9 @@ export default function LandingPage() {
       .catch((error) => {
         console.error("Error:", error);
       });
+
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // true jika token ada
   }, []);
 
   return (
@@ -56,9 +60,13 @@ export default function LandingPage() {
                 </a>
               </li>
             </ul>
-            <button className="bg-yellow-500 text-white px-5 py-2 rounded-full font-bold hover:bg-yellow-600">
-              <Link to="/register">Sign In</Link>
-            </button>
+            {!isLoggedIn && (
+              <Link to="/register">
+                <button className="bg-yellow-500 text-white px-5 py-2 rounded-full font-bold hover:bg-yellow-600">
+                  Sign In
+                </button>
+              </Link>
+            )}
           </nav>
         </div>
 
@@ -122,12 +130,14 @@ export default function LandingPage() {
                       transition-all duration-300 ease-in-out 
                       transform translate-y-full group-hover:translate-y-0"
               >
-                <Button
-                  className="px-5 py-4 bg-[#003732] rounded-lg font-bold text-2xl
+                <Link to={`/program/${program.id}`}>
+                  <Button
+                    className="px-5 py-4 bg-[#003732] rounded-lg font-bold text-2xl
                           opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                >
-                  <Link to={`/program/${program.id}`}> Lihat Program</Link>
-                </Button>
+                  >
+                    Lihat Program
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}

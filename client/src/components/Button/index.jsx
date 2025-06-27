@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Button = (props) => {
-  const {children, className, type} = props;
+  const {children, className, type, onClick} = props;
   return (
-    <button type={type} className={`bg-[#003732] text-white p-3 rounded-3xl ${className}`}>
+    <button onClick={onClick} type={type} className={`bg-[#003732] text-white p-3 rounded-3xl ${className}`}>
       {children}
     </button>
   )

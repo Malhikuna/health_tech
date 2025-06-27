@@ -23,6 +23,8 @@ const register = async (request) => {
 
   user.password = await bcrypt.hash(user.password, 10);
 
+  user.created_at = getWIBDate();
+
   const newUser = await prismaClient.user.create({
     data: user,
     select: {
@@ -30,8 +32,7 @@ const register = async (request) => {
       email: true,
       password: true,
       first_name: true,
-      last_name: true,
-      created_at: getWIBDate()
+      last_name: true
     }
   })
 

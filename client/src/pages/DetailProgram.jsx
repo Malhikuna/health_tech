@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Program from "../layouts/Program";
 import image from "../assets/image/imgProgram7Hari.png";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import Button from "../components/Button";
 
 const DetailProgram = () => {
   const { id } = useParams();
-    console.log(id)
+  const navigate = useNavigate();
 
   const [program, setPrograms] = useState(null);
   const [error, setError] = useState(null);
+
+  const handleStartProgram = () => {
+    navigate(`/formdatafisik/${id}`);
+  };
 
   useEffect(() => {
     axios
@@ -32,6 +37,13 @@ const DetailProgram = () => {
             Ikuti program harian yang dirancang khusus untuk membentukkebiasaan
             sehat secara konsisten dan menyenangkan.
           </p>
+        </>
+      }
+      tombol={
+        <>
+          <Button onClick={handleStartProgram} className="absolute bottom-0 right-0 font-bold py-4">
+            Mulai Program
+          </Button>
         </>
       }
     >
