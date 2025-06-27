@@ -55,7 +55,7 @@ const RegisterPage = () => {
       style={{ backgroundImage: `url(${bgLogin})` }}
     >
       <div className="w-full h-screen flex items-center justify-center">
-        <div className="w-[839px] h-[537px] bg-[#003237] rounded-[30px] relative flex">
+        <div className="w-[839px] h-[628px] bg-[#003237] rounded-[30px] relative flex">
           <div className="absolute top-[-10px] w-1/2 p-9">
             <h1 className="text-white font-bold text-5xl font-cinzel text-center mb-3">
               Register
@@ -67,7 +67,7 @@ const RegisterPage = () => {
                 name="email"
                 placeholder="email"
                 value={form.email}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -77,7 +77,7 @@ const RegisterPage = () => {
                 name="first_name"
                 placeholder="First Name"
                 value={form.first_name}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -87,7 +87,7 @@ const RegisterPage = () => {
                 name="last_name"
                 placeholder="Last Name"
                 value={form.last_name}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -97,7 +97,7 @@ const RegisterPage = () => {
                 name="password"
                 placeholder="password"
                 value={form.password}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -107,7 +107,7 @@ const RegisterPage = () => {
                 name="confirmPassword"
                 placeholder="confirmPassword"
                 value={form.confirmPassword}
-                className="w-full bg-white text-black p-1"
+                classNameInput="w-full bg-white text-black p-1"
                 onChange={handleChange}
               />
 
@@ -131,7 +131,7 @@ const RegisterPage = () => {
           <img
             src={imgRegister}
             alt=""
-            className="w-[55%] right-0 bottom-[-25px] absolute"
+            className="w-[64.5%] right-0 bottom-[-31px] absolute"
           />
         </div>
       </div>

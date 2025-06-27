@@ -52,7 +52,7 @@ export default function LoginPage() {
                 type="email"
                 placeholder=""
                 name="email"
-                className="w-full bg-white text-black "
+                classNameInput="w-full bg-white text-black "
                 onChange={handleChange}
               />
 
@@ -61,7 +61,7 @@ export default function LoginPage() {
                 type="password"
                 placeholder=""
                 name="password"
-                className="w-full bg-white text-black"
+                classNameInput="w-full bg-white text-black"
                 onChange={handleChange}
               />
 
