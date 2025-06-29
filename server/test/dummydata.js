@@ -5,7 +5,7 @@ export const recipeData = [
     id: 1,
     name: "Paket Nasi & Tempe Bakar",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    intructions: "1. Haluskan {Bawang Putih}, campur dengan {Kecap Manis}.&lt;br>2. Lumuri {Tempe} dengan bumbu, diamkan 10 menit.&lt;br>3. Bakar/panggang tempe di teflon hingga matang.&lt;br>4. Sajikan dengan {Nasi Merah} hangat, {Lalapan}, dan {Sambal Tomat Rebus}.",
+    instructions: "1. Haluskan {Bawang Putih}, campur dengan {Kecap Manis}.&lt;br>2. Lumuri {Tempe} dengan bumbu, diamkan 10 menit.&lt;br>3. Bakar/panggang tempe di teflon hingga matang.&lt;br>4. Sajikan dengan {Nasi Merah} hangat, {Lalapan}, dan {Sambal Tomat Rebus}.",
     image_url: "/images/ubi-kukus.jpg",
     cooking_time_minutes: 10
   },
@@ -13,7 +13,7 @@ export const recipeData = [
     id: 2,
     name: "Opor Ayam Sehat",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    intructions: "1. Masak Oatmeal dengan air. 2. Tambahkan potongan Pisang Ambon dan Madu Murni.",
+    instructions: "1. Masak Oatmeal dengan air. 2. Tambahkan potongan Pisang Ambon dan Madu Murni.",
     image_url: "/images/ubi-kukus.jpg",
     cooking_time_minutes: 10
   },
@@ -21,7 +21,7 @@ export const recipeData = [
     id: 3,
     name: "Sayur Bening & Tahu Kukus",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    intructions: "1. Cuci bersih {Ubi Cilembu}. 2. Kukus selama 20-30 menit hingga empuk.",
+    instructions: "1. Cuci bersih {Ubi Cilembu}. 2. Kukus selama 20-30 menit hingga empuk.",
     image_url: "/images/ubi-kukus.jpg",
     cooking_time_minutes: 10
   },
@@ -29,7 +29,7 @@ export const recipeData = [
     id: 4,
     name: "Bubur Kacang Hijau Sehat",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    intructions: "1. Cuci bersih {Ubi Cilembu}. 2. Kukus selama 20-30 menit hingga empuk.",
+    instructions: "1. Cuci bersih {Ubi Cilembu}. 2. Kukus selama 20-30 menit hingga empuk.",
     image_url: "/images/ubi-kukus.jpg",
     cooking_time_minutes: 10
   },
@@ -37,7 +37,7 @@ export const recipeData = [
     id: 5,
     name: "Sarapan Praktis & Padat Gizi",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    intructions: "1. Cuci bersih {Ubi Cilembu}. 2. Kukus selama 20-30 menit hingga empuk.",
+    instructions: "1. Cuci bersih {Ubi Cilembu}. 2. Kukus selama 20-30 menit hingga empuk.",
     image_url: "/images/ubi-kukus.jpg",
     cooking_time_minutes: 10
   },

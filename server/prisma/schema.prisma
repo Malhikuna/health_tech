@@ -66,7 +66,7 @@ model Recipe {
   id                   Int                 @id @default(autoincrement())
   name                 String              @db.VarChar(255)
   description          String              @db.Text
-  intructions          String              @db.Text
+  instructions         String              @db.Text
   image_url            String              @db.VarChar(255)
   cooking_time_minutes Int
   breakfastPlans       Daily_Plan[]        @relation("BreakfastRecipe")
