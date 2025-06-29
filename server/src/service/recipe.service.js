@@ -91,6 +91,11 @@ const getRecipe = async (userId, recipeId) => {
   };
 }
 
+const recognize = async (request) => {
+
+}
+
 export default {
-  getRecipe
+  getRecipe,
+  recognize,
 };
