@@ -67,9 +67,9 @@ const FormDataFisik = () => {
       alert(res.data.message);
 
       console.log(res.data.data);
-      navigate("/dashboard");
+      navigate(`/dashboard/${id}`);
     } catch (err) {
-      alert("Terjadi kesalahan");
+      alert("Terjadi kesalahan" + err);
     }
   };
 
