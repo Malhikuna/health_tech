@@ -23,6 +23,15 @@ export default function LoginPage() {
     if (res.success) {
       setMessage(res.message);
       localStorage.setItem("token", res.data.token); // Simpan token
+
+      // const { user } = res.data.data;
+      // localStorage.setItem(
+      //   "user",
+      //   JSON.stringify({
+      //     name: user.first_name, 
+      //     email: user.email
+      //   })
+      // );
       navigate("/");
     } else {
       setError(res.errors);
@@ -74,7 +83,9 @@ export default function LoginPage() {
                 </Button>
                 <p className="font-bold text-white mt-3">
                   Belum punya akun?{" "}
-                  <Link to="/register" className="text-[#42887E]">Register Disini</Link>
+                  <Link to="/register" className="text-[#42887E]">
+                    Register Disini
+                  </Link>
                 </p>
                 {error && <p className="text-red-700 text-center">{error}</p>}
                 {message && <p className="">{message}</p>}

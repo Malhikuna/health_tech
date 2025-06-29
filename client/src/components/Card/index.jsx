@@ -5,7 +5,7 @@ import Input from "../Input/Input";
 import { Link } from "react-router";
 
 const index = (props) => {
-  const { title, time, content, buttonText, completed, onChange, recipeId } =
+  const { title, time, content, buttonText, checked, onChange, recipeId } =
     props;
   return (
     <div className="bg-teal-800 text-white p-4 rounded-3xl shadow-md w-[300px] max-h-[298.5px]">
@@ -19,7 +19,7 @@ const index = (props) => {
           {/* <Input type="checkbox"></Input> */}
           <Input
             type="checkbox"
-            checked={completed}
+            checked={checked}
             onChange={onChange}
             className="w-6"
           />

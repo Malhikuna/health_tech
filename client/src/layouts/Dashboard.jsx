@@ -16,7 +16,7 @@ import axios from "axios";
 //   { id: 5, completed: false },
 //   { id: 6, completed: false },
 //   { id: 7, completed: false },
-// ];  
+// ];
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
@@ -24,48 +24,47 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
-
+  const [userName, setUserName] = useState("");
 
   const handleMealCheck = async (mealType, isCompleted) => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await axios.post(
-      "http://localhost:3000/api/progress/log-meal",
-      {
-        programId: id, // ambil dari data API
-        dayNumber: dashboardData.dayNumber, // ambil dari data API
-        mealType,
-        completed: isCompleted ? 1 : 0,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:3000/api/progress/log-meal",
+        {
+          programId: id,
+          dayNumber: dashboardData.dayNumber,
+          mealType,
+          completed: isCompleted ? 1 : 0,
         },
-      }
-    );
-
-    if (response.data.success) {
-      // Update UI lokal
-      setDashboardData((prevData) => ({
-        ...prevData,
-        meals: {
-          ...prevData.meals,
-          [mealType]: {
-            ...prevData.meals[mealType],
-            completed: isCompleted,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        },
-      }));
+        }
+      );
+
+      if (response.data.success) {
+        // Update UI lokal
+        setDashboardData((prevData) => ({
+          ...prevData,
+          meals: {
+            ...prevData.meals,
+            [mealType]: {
+              ...prevData.meals[mealType],
+              completed: isCompleted ? 1 : 0,
+            },
+          },
+        }));
+      }
+
+      // alert(response.data.message);
+      console.log(response.data);
+    } catch (error) {
+      alert("Gagal memperbarui status makanan");
+      console.error(error);
     }
-
-    alert("berhasil")
-    console.log(response)
-  } catch (error) {
-    alert("Gagal memperbarui status makanan");
-    console.error(error);
-  }
-};
-
+  };
 
   const { id } = useParams();
   const program7HariId = "397b9bed-6387-4d5b-83aa-093de91a0524";
@@ -113,7 +112,7 @@ const Dashboard = () => {
   };
 
   const StepCircle = ({ step, isActive, isCompleted }) => (
-    <div className="flex flex-col items-center relative">
+    <div className="flex flex-col items-center relative mt-3">
       <div
         onClick={() => handleStepClick(step.id)}
         className={`
@@ -160,6 +159,12 @@ const Dashboard = () => {
   );
 
   useEffect(() => {
+    const stored = localStorage.getItem("user");
+    if (stored) {
+      const user = JSON.parse(stored);
+      setUserName(user.name); // hanya nama depan
+    }
+    
     const fetchDashboardData = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -184,10 +189,9 @@ const Dashboard = () => {
     };
 
     fetchDashboardData();
-
   }, []);
 
-   if (error) {
+  if (error) {
     return <div className="text-center py-10 text-red-500">Error: {error}</div>;
   }
 
@@ -201,12 +205,10 @@ const Dashboard = () => {
     label: `Day ${i + 1}`,
   }));
 
-  
-
- const handleLogout = () => {
-  localStorage.removeItem("token");
-  navigate("/login"); 
-};
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
     <div className="">
@@ -216,8 +218,10 @@ const Dashboard = () => {
           <img src={Logo} alt="" width={50} />
 
           <Link to="/register">
-            <Button onClick={() => handleLogout()
-            } className="bg-red-700 text-white px-5 py-2 rounded-full font-bold hover:bg-yellow-600">
+            <Button
+              onClick={() => handleLogout()}
+              className="bg-red-700 text-white px-5 py-2 rounded-full font-bold hover:bg-yellow-600"
+            >
               Logout
             </Button>
           </Link>
@@ -227,7 +231,7 @@ const Dashboard = () => {
       <div className=" bg-gray-200">
         <div className="flex flex-col md:flex-row gap-6">
           {/* sidebar */}
-          <div className="max-h-screen overflow-y-auto overflow-x-hidden">
+          <div className="max-h-screen overflow-y-auto overflow-x-hidden w-[650px]">
             <div className="bg-[#003237] text-white p-[42px] shadow-md h-[409px]">
               <h3 className="text-lg font-bold">{dashboardData.programName}</h3>
               <img src={profile} alt="" className="mt-2" width={120} />
@@ -269,9 +273,11 @@ const Dashboard = () => {
                     time={getMealTime(mealType)}
                     content={mealData.name}
                     buttonText="Lihat Resep"
-                    completed={mealData.completed === 1}
-                    onChange={(e) => handleMealCheck(mealType, e.target.completed)}
-                     recipeId={mealData.recipe_id}
+                    checked={mealData.completed === 1}
+                    onChange={(e) =>
+                      handleMealCheck(mealType, e.target.checked)
+                    }
+                    recipeId={mealData.recipe_id}
                   />
                 )
               )}
@@ -355,7 +361,9 @@ const ProgressCard = ({ title, progress, target, className }) => (
       </div>
 
       <div className="flex items-start justify-center gap-5">
-        <h1 className="mt-1.5 font-bold w-[23px] text-[10px]">0/{target} kalori</h1>
+        <h1 className="mt-1.5 font-bold w-[23px] text-[10px]">
+          0/{target} kalori
+        </h1>
         <p className="w-[200px]">
           Sisa kalori yang masih bisa kamu konsumsi agar tetap dalam target
           harian.

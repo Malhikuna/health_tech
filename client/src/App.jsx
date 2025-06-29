@@ -8,21 +8,37 @@ import FormDataFisik from "./pages/FormDataFisik";
 import ResepPage from "./pages/ResepPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/dashboard/:id" element={<DashboardPage />} />
-      <Route path="/program/:id" element={<DetailProgram />} />
-      <Route path="/formdatafisik/:id" element={<FormDataFisik/>} />
-      <Route path="/resep/:recipeId" element={
-        <ProtectedRoute>
-          <ResepPage/>
-        </ProtectedRoute>
-        } />
+      <Route
+        path="/dashboard/:id"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/program/:id"
+        element={
+          <ProtectedRoute>
+            <DetailProgram />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/formdatafisik/:id" element={<FormDataFisik />} />
+      <Route
+        path="/resep/:recipeId"
+        element={
+          <ProtectedRoute>
+            <ResepPage />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

@@ -3,7 +3,7 @@ import nasi from "../assets/image/nasiGoreng.png";
 import logo from "../assets/image/Logo.png";
 import { Clock, Download, MoveLeft } from "lucide-react";
 import Button from "../components/Button";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 const ResepPage = () => {
@@ -11,6 +11,8 @@ const ResepPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { recipeId } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -46,18 +48,17 @@ const ResepPage = () => {
         className="relative w-full h-[516px] bg-cover bg-center bg-no-repeat m-0 p-0"
         style={{ backgroundImage: `url(${nasi})` }}
       >
-        {/* Icon MoveLeft di pojok kiri atas */}
-        <Link to="/dashboard/:sluq">
-          <Button className="absolute top-4 left-6 bg-[#003237] px-8 py-3 rounded-full text-white z-50">
-            <MoveLeft size={24} />
-          </Button>
-        </Link>
-
+        {/* Icon MoveLeft di pojok kiri atas */}=
+        <Button
+          onClick={() => navigate(-1)}
+          className="absolute top-4 left-6 bg-[#003237] px-8 py-3 rounded-full text-white z-50"
+        >
+          <MoveLeft size={24} />
+        </Button>
         {/* Logo di tengah layar */}
         <div className="absolute inset-0 flex justify-center items-center">
           <img src={logo} alt="Logo" width={95} />
         </div>
-
         <div className="absolute bottom-4 left-6">
           <h1 className="font-bold text-5xl text-white">{recipe.name}</h1>
           <div className="flex text-white gap-3 mt-5 font-semibold">
@@ -76,7 +77,9 @@ const ResepPage = () => {
             <div className="w-[579px] px-[50px] py-[30px] rounded-2xl bg-[#003732] text-white">
               <ul className="list-disc pl-5 space-y-2 text-[20px]">
                 {recipe.ingredients.map((item, index) => (
-                  <li key={index}>{item.name} {item.quantity} {item.unit}</li>
+                  <li key={index}>
+                    {item.name} {item.quantity} {item.unit}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -92,7 +95,7 @@ const ResepPage = () => {
               {" "}
               <div className="bg-white rounded-2xl p-6 shadow-lg border-l-8 border-[#003732]">
                 <p className="text-gray-800 font-medium text-lg">
-                  1. Cincang bawang sampai halus
+                  {recipe.instructions}
                 </p>
               </div>
             </div>

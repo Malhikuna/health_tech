@@ -152,7 +152,7 @@ const FormDataFisik = () => {
 
             <div className="w-full">
               <InputForm
-                classNameInput="bg-white"
+                classNameInput="bg-white w-full"
                 placeholder="Misalnya: Menurunkan berat badan"
                 label="Tujuan"
                 type="text"
