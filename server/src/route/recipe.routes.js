@@ -5,3 +5,5 @@ import authorize from "../middleware/auth.middleware.js";
 export const recipeRoutes = Router();
 
 recipeRoutes.get('/:id', authorize, recipeController.getRecipe);
+
+recipeRoutes.post('/recognize', recipeController.recognize);
