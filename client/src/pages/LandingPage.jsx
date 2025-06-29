@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import bgImage from "../assets/image/bgHome.png";
 import sayur from "../assets/image/sayur.png";
 import ayamSayur from "../assets/image/ayamSayur.png";
 import cleanEat from "../assets/image/cleanEat.png";
-import olahraga from "../assets/image/Olahraga.png";
 import tumbuhan from "../assets/image/tumbuhanSec4.png";
 import laptop from "../assets/image/mockup.png";
 import Button from "../components/Button/index";
 import Input from "../components/Input/Input";
 import kontakImage from "../assets/image/kontakImage.png";
 import { BookUser, Mail, MapPin } from "lucide-react";
+import { Link } from "react-router";
+import axios from "axios";
 
 export default function LandingPage() {
+  const [programs, setPrograms] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/program")
+      .then((response) => {
+        setPrograms(response.data.data); // Data langsung tersedia di response.data
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // true jika token ada
+  }, []);
+
   return (
     <div className="">
       <div
@@ -42,9 +60,13 @@ export default function LandingPage() {
                 </a>
               </li>
             </ul>
-            <button className="bg-yellow-500 text-white px-5 py-2 rounded-full font-bold hover:bg-yellow-600">
-              Sign In
-            </button>
+            {!isLoggedIn && (
+              <Link to="/register">
+                <button className="bg-yellow-500 text-white px-5 py-2 rounded-full font-bold hover:bg-yellow-600">
+                  Sign In
+                </button>
+              </Link>
+            )}
           </nav>
         </div>
 
@@ -89,28 +111,36 @@ export default function LandingPage() {
         <h1 className="font-bold text-4xl">Program</h1>
 
         <div div className="flex justify-between gap-10 mt-[30px]">
-          <div
-            className="border w-[500px] h-[441px] flex-1 rounded-3xl bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${cleanEat})` }}
-          >
-            <div className="bg-black/50 h-full rounded-3xl flex flex-col items-center justify-center">
-              <h2 className="text-white font-bold text-4xl">Clean Eating</h2>
-              <p className="text-white text-2xl">
-                Tantangan 7 Hari Makan Berish
-              </p>
-            </div>
-          </div>
+          {programs.map((program) => (
+            <div
+              key={program.id}
+              className="border w-[500px] h-[441px] flex-1 bg-cover bg-center bg-no-repeat relative bg-gray-200 rounded-3xl overflow-hidden group"
+              style={{ backgroundImage: `url(${cleanEat})` }}
+            >
+              <div className="bg-black/50 h-full rounded-3xl flex flex-col items-center justify-center p-9">
+                <h2 className="text-white font-bold text-3xl text-center">
+                  {program.name}
+                </h2>
+                {/* <p className="text-white text-2xl">{program.description}</p> */}
+              </div>
 
-          <div
-            className="border w-[500px] h-[441px] flex-1 rounded-3xl bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${olahraga})` }}
-          >
-            <div className="bg-black/50 h-full rounded-3xl flex items-center justify-center">
-              <Button className="py-3 px-5 rounded-3xl font-bold">
-                Lihat Program
-              </Button>
+              <div
+                className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 
+                      flex items-center justify-center 
+                      transition-all duration-300 ease-in-out 
+                      transform translate-y-full group-hover:translate-y-0"
+              >
+                <Link to={`/program/${program.id}`}>
+                  <Button
+                    className="px-5 py-4 bg-[#003732] rounded-lg font-bold text-2xl
+                          opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                  >
+                    Lihat Program
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="mx-[50px] bg-[#003732] mt-[50px] rounded-3xl flex h-[499px]">

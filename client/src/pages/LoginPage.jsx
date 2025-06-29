@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { loginUser } from "../services/authService";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import bgLogin from "../assets/image/bgLogin.png";
 import imgLogin from "../assets/image/imgLogin.png";
 import Button from "../components/Button";
@@ -23,7 +23,7 @@ export default function LoginPage() {
     if (res.success) {
       setMessage(res.message);
       localStorage.setItem("token", res.data.token); // Simpan token
-      navigate("/home");
+      navigate("/");
     } else {
       setError(res.errors);
       setMessage("");
@@ -74,10 +74,10 @@ export default function LoginPage() {
                 </Button>
                 <p className="font-bold text-white mt-3">
                   Belum punya akun?{" "}
-                  <span className="text-[#42887E]">Register Disini</span>
+                  <Link to="/register" className="text-[#42887E]">Register Disini</Link>
                 </p>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                {message && <p style={{ color: "green" }}>{message}</p>}
+                {error && <p className="text-red-700 text-center">{error}</p>}
+                {message && <p className="">{message}</p>}
               </div>
             </form>
           </div>

@@ -1,9 +1,10 @@
 import React, { Children } from "react";
 import Button from "../components/Button";
 import { MoveLeft } from "lucide-react";
+import { Link } from "react-router";
 
 const Program = (props) => {
-  const { info, children, image } = props;
+  const { info, children, image, tombol } = props;
   return (
     <div className="flex p-[30px] gap-[60px]">
       <div className="">
@@ -12,11 +13,12 @@ const Program = (props) => {
           style={{ backgroundImage: `url(${image})` }}
         >
           <Button className="">
-            <MoveLeft width={60} height={30} />
+            <Link to="/">
+              {" "}
+              <MoveLeft width={60} height={30} />
+            </Link>
           </Button>
-          <Button className="absolute bottom-0 right-0 font-bold py-4">
-            MULAI PROGRAM
-          </Button>
+          {tombol}
         </div>
         <div className="w-[678px] h-[167px] rounded-lg mt-[30px] bg-gradient-to-r from-[#003237] to-[#42887E] flex flex-col items-center justify-center">
           <div className="w-full p-9">{info}</div>
