@@ -23,7 +23,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:3000/api/progress/log-meal",
+        "https://healthtech-production.up.railway.app/api/progress/log-meal",
         {
           programId: id,
           dayNumber: dashboardData.dayNumber,
@@ -164,7 +164,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:3000/api/dashboard/today",
+        "https://healthtech-production.up.railway.app/api/dashboard/today",
         {
           headers: {
             Authorization: `Bearer ${token}`,

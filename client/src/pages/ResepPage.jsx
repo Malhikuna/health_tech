@@ -19,7 +19,7 @@ const ResepPage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:3000/api/recipe/${recipeId}`,
+          `https://healthtech-production.up.railway.app/api/recipe/${recipeId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

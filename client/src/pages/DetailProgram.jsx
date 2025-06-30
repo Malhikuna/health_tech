@@ -32,7 +32,7 @@ const DetailProgram = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/program/${id}`)
+      .get(`https://healthtech-production.up.railway.app/api/program/${id}`)
       .then((response) => setPrograms(response.data.data))
       .catch((err) => setError(err.message));
   }, [id]); // Gunakan ID sebagai dependency, berarti ketika idnya berupa fetch datanya
