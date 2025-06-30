@@ -11,6 +11,7 @@ import kontakImage from "../assets/image/kontakImage.png";
 import { BookUser, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router";
 import axios from "axios";
+import logo from "../assets/image/Logo.png"
 
 export default function LandingPage() {
   const [programs, setPrograms] = useState([]);
@@ -18,7 +19,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/program")
+      .get("https://healthtech-production.up.railway.app/api/program")
       .then((response) => {
         setPrograms(response.data.data); // Data langsung tersedia di response.data
       })
@@ -43,7 +44,9 @@ export default function LandingPage() {
 
         <div className="px-[100px] py-[20px]">
           <nav className="w-full flex justify-between items-center">
-            <div className="text-white text-2xl font-bold">LOGO</div>
+            <div className="text-white text-2xl font-bold">
+              <img src={logo} width={50} alt="" />
+            </div>
             <ul className="flex space-x-6 text-white">
               <li>
                 <a href="#" className="hover:underline">
@@ -161,7 +164,7 @@ export default function LandingPage() {
       </div>
       <div className="mx-[50px] bg-[#003732] mt-[50px] rounded-3xl flex">
         <div className="text-white flex flex-col mt-[50px] gap-5 p-[55px]">
-          <h2 className="font-bold text-6xl">TANTANG KAMI</h2>
+          <h2 className="font-bold text-6xl">TENTANG KAMI</h2>
           <p className="mt-[10px] w-[700px] text-2xl">
             Kami percaya hidup sehat itu hak semua orang. Nutriplan hadir untuk
             menjawab tantangan hidup sehat yang sering dianggap mahal dan rumit.
@@ -242,8 +245,8 @@ export default function LandingPage() {
       <footer className="bg-[#171717] text-white p-4 mt-[100px]">
         <div className="mx-[50px] flex justify-between items-center flex-wrap mt-[30px]">
           <div className="w-full md:w-1/3 text-center md:text-left mb-4 md:mb-0 space-y-3">
-            <h3 className="text-xl font-bold">
-              LOGO <span className="font-normal">NutriPlan</span>
+            <h3 className="text-xl font-bold flex items-center gap-3">
+              <img src={logo} width={50} alt="" /> <span className="font-normal">NutriPlan</span>
             </h3>
             <p className="text-sm">
               Nutriplan adalah platform perencanaan makan yang dirancang untuk
@@ -255,7 +258,7 @@ export default function LandingPage() {
           <div className="w-full md:w-1/3 text-start mb-4 md:mb-0 space-y-2">
             <h4 className="text-lg font-semibold">Kontak Kami</h4>
             <p className="text-sm">+62 83801253957</p>
-            <p className="text-sm">bytebroccoli@gmail.com</p>
+            <p className="text-sm">NutriPlan@gmail.com</p>
             <p className="text-sm">Jalan Dr. Setiabudi No. 193 (Kampus IV)</p>
           </div>
           <div className="w-full md:w-1/5 text-start space-y-2">

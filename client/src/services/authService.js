@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/api/auth'; 
+const BASE_URL = 'https://healthtech-production.up.railway.app/api/auth'; 
 
 export const registerUser = async (userData) => {
   try {
