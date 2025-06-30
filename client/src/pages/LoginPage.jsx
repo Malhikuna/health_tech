@@ -42,6 +42,8 @@ export default function LoginPage() {
         // ✅ Redirect ke homepage jika belum ikut program
         navigate("/");
       }
+
+        
     } else {
       setError(res.errors);
       setMessage("");

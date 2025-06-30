@@ -27,7 +27,7 @@ const ResepPage = () => {
           }
         );
         setRecipe(response.data.data);
-        console.log(response.data.data);
+        // console.log(response.data.data);
       } catch (err) {
         setError(err.response?.data?.message || "resep tidak ditemukan");
       } finally {

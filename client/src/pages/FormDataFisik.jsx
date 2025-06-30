@@ -66,7 +66,7 @@ const FormDataFisik = () => {
 
       alert(res.data.message);
       localStorage.setItem("programUser", JSON.stringify(res.data.data));
-      console.log(res.data.data);
+      // console.log(res.data.data);
       navigate(`/dashboard/${id}`);
     } catch (err) {
       alert("Terjadi kesalahan" + err);
@@ -151,16 +151,17 @@ const FormDataFisik = () => {
             </div>
 
             <div className="w-full">
-              <InputForm
-                classNameInput="bg-white w-full"
-                placeholder="Misalnya: Menurunkan berat badan"
-                label="Tujuan"
-                type="text"
+              <Label>Tujuan</Label>
+              <select
                 name="goal"
                 onChange={handleChange}
-              />
+                className="w-full p-2 rounded-3xl"
+              >
+                <option value="">Tujuan</option>
+                <option value="naik_bb">Menaikan berat badan</option>
+                <option value="turun_bb">Menurunkan berat badan</option>
+              </select>
             </div>
-
             <Button
               type="submit"
               className="mt-4 px-10 py-2 rounded-full bg-[#42887E] text-white font-bold"
