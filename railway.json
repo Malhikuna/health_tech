@@ -3,7 +3,7 @@
   "build": {
     "builder": "NIXPACKS",
     "buildCommand": "npm install",
-    "startCommand": "npm start",
+    "startCommand": "node src/main.js",
     "rootDir": "server"
   }
 }
