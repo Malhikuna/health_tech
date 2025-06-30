@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx prisma migrate deploy && node src/index.js",
+    "start": "npx prisma migrate deploy && node src/main.js",
     "dev": "nodemon src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "Hikmal Maulana",

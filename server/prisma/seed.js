@@ -1,10 +1,10 @@
-import { programsData } from '../src/data/programData';
-import { ingredientsData } from '../src/data/ingredientsData';
+import { programsData } from '../src/data/programData.js';
+import { ingredientsData } from '../src/data/ingredientsData.js';
 import {
   recipesData,
   recipeIngredientsData,
   dailyPlanData
-} from'../src/data/planData';
+} from'../src/data/planData.js';
 import {prismaClient} from "../src/application/database.js";
 
 async function main() {
