@@ -31,16 +31,6 @@ const getDashboardToday = async (userId) => {
     }
   });
 
-  let dailyLog1 = await prismaClient.user_Activity.findMany({
-    where: {
-      user_program_id: userProgramId,
-      day_number: currentDayNumber,
-    },
-    orderBy: {
-      activity_date: 'desc'
-    }
-  });
-
   if (!dailyLog) {
     // Jika pengguna login pertama kali di hari ini, buatkan log baru
     dailyLog = await prismaClient.user_Activity.create({
@@ -77,7 +67,6 @@ const getDashboardToday = async (userId) => {
 
   return {
     programName,
-    test: dailyLog1,
     dayNumber: currentDayNumber,
     activityDate: dailyLog.activity_date.toISOString().split('T')[0],
     targetCalories: calculated_target_calories,
