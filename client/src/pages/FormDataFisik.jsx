@@ -65,11 +65,11 @@ const FormDataFisik = () => {
       );
 
       alert(res.data.message);
-
+      localStorage.setItem("programUser", JSON.stringify(res.data.data));
       console.log(res.data.data);
-      navigate("/dashboard");
+      navigate(`/dashboard/${id}`);
     } catch (err) {
-      alert("Terjadi kesalahan");
+      alert("Terjadi kesalahan" + err);
     }
   };
 
@@ -152,7 +152,7 @@ const FormDataFisik = () => {
 
             <div className="w-full">
               <InputForm
-                classNameInput="bg-white"
+                classNameInput="bg-white w-full"
                 placeholder="Misalnya: Menurunkan berat badan"
                 label="Tujuan"
                 type="text"

@@ -19,11 +19,29 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const res = await loginUser(formData);
+
     if (res.success) {
       setMessage(res.message);
-      localStorage.setItem("token", res.data.token); // Simpan token
-      navigate("/");
+
+      // Simpan token dan nama user ke localStorage
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("first_name", res.data.user.first_name);
+
+      // Cek apakah ada program yang sedang aktif
+      const savedProgram = localStorage.getItem("programUser");
+
+      if (savedProgram) {
+        const parsed = JSON.parse(savedProgram);
+        const programId = parsed.programId;
+
+        // ✅ Redirect ke dashboard jika ada program
+        navigate(`/dashboard/${programId}`);
+      } else {
+        // ✅ Redirect ke homepage jika belum ikut program
+        navigate("/");
+      }
     } else {
       setError(res.errors);
       setMessage("");
@@ -74,7 +92,9 @@ export default function LoginPage() {
                 </Button>
                 <p className="font-bold text-white mt-3">
                   Belum punya akun?{" "}
-                  <Link to="/register" className="text-[#42887E]">Register Disini</Link>
+                  <Link to="/register" className="text-[#42887E]">
+                    Register Disini
+                  </Link>
                 </p>
                 {error && <p className="text-red-700 text-center">{error}</p>}
                 {message && <p className="">{message}</p>}
