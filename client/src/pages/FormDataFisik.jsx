@@ -65,7 +65,7 @@ const FormDataFisik = () => {
       );
 
       alert(res.data.message);
-
+      localStorage.setItem("programUser", JSON.stringify(res.data.data));
       console.log(res.data.data);
       navigate(`/dashboard/${id}`);
     } catch (err) {

@@ -93,11 +93,17 @@ const ResepPage = () => {
             </h1>
             <div className="w-full flex flex-col gap-3 p-8 rounded-2xl bg-[#808080] text-white">
               {" "}
-              <div className="bg-white rounded-2xl p-6 shadow-lg border-l-8 border-[#003732]">
-                <p className="text-gray-800 font-medium text-lg">
-                  {recipe.instructions}
-                </p>
-              </div>
+              {recipe.instructions &&
+                recipe.instructions.split(/<br\s*\/?>/).map((step, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-2xl p-5 shadow-lg border-l-8 border-[#003732] mb-4"
+                  >
+                    <p className="text-gray-800 font-medium text-lg">
+                      {step.trim()}
+                    </p>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

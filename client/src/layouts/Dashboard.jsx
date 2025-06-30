@@ -24,7 +24,9 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
+  const { id } = useParams();
+  // const [refreshTrigger, setRefreshTrigger] = useState(false);
+  // const [userName, setUserName] = useState("");
 
   const handleMealCheck = async (mealType, isCompleted) => {
     try {
@@ -58,6 +60,16 @@ const Dashboard = () => {
         }));
       }
 
+      // if (response.data.success) {
+
+      // }
+
+      if (response.data.success) {
+        setTimeout(() => {
+          fetchDashboardData();
+        }, 500);
+      }
+
       // alert(response.data.message);
       console.log(response.data);
     } catch (error) {
@@ -66,7 +78,6 @@ const Dashboard = () => {
     }
   };
 
-  const { id } = useParams();
   const program7HariId = "397b9bed-6387-4d5b-83aa-093de91a0524";
 
   const renderComponentById = () => {
@@ -158,35 +169,36 @@ const Dashboard = () => {
     </div>
   );
 
-  useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (stored) {
-      const user = JSON.parse(stored);
-      setUserName(user.name); // hanya nama depan
-    }
-    
-    const fetchDashboardData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          "http://localhost:3000/api/dashboard/today",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  const fetchDashboardData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        "http://localhost:3000/api/dashboard/today",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-        setDashboardData(response.data.data);
-        setCurrentStep(response.data.data.dayNumber); // Set current step berdasarkan dayNumber dari API
-        console.log(response.data.data);
-      } catch (err) {
-        setError("data gagal di ambil");
-        setDashboardData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
+      setDashboardData(response.data.data);
+      setCurrentStep(response.data.data.dayNumber); // Set current step berdasarkan dayNumber dari API
+      console.log(response.data.data);
+    } catch (err) {
+      setError("data gagal di ambil");
+      setDashboardData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    // const stored = localStorage.getItem("user");
+    // if (stored) {
+    //   const user = JSON.parse(stored);
+    //   setUserName(user.name); // hanya nama depan
+    // }
+    //  console.log("refreshTrigger:", refreshTrigger);
 
     fetchDashboardData();
   }, []);
@@ -207,8 +219,11 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("first_name");
     navigate("/login");
   };
+
+  const nama = localStorage.getItem("first_name");
 
   return (
     <div className="">
@@ -236,7 +251,7 @@ const Dashboard = () => {
               <h3 className="text-lg font-bold">{dashboardData.programName}</h3>
               <img src={profile} alt="" className="mt-2" width={120} />
               <div className="mt-5">
-                <h1 className="font-bold text-[20px]">Hai name!</h1>
+                <h1 className="font-bold text-[20px]">Hai {nama}!</h1>
                 <p className="text-sm">
                   Ayo ikutin program untuk mencapai tujuan mu
                 </p>
