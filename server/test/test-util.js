@@ -274,13 +274,7 @@ export const createDailyPlan = async () => {
 }
 
 export const removeDailyPlan = async () => {
-  const {id: programId} = await getProgram();
-
-  await prismaClient.daily_Plan.deleteMany({
-    where: {
-      program_id: programId
-    }
-  })
+  await prismaClient.daily_Plan.deleteMany()
 }
 
 export const getDailyPlan = async () => {
