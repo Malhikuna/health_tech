@@ -12,9 +12,21 @@ const DetailProgram = () => {
   const [program, setPrograms] = useState(null);
   const [error, setError] = useState(null);
 
-  
-
   const handleStartProgram = () => {
+    // Cek apakah ada program yang sedang aktif
+    const savedProgram = localStorage.getItem("programUser");
+
+    if (savedProgram) {
+      const parsed = JSON.parse(savedProgram);
+      const programId = parsed.programId;
+
+      // ✅ Redirect ke dashboard jika ada program
+      navigate(`/dashboard/${programId}`);
+    } else {
+      // ✅ Redirect ke homepage jika belum ikut program
+      navigate("/register");
+    }
+
     navigate(`/formdatafisik/${id}`);
   };
 
@@ -25,7 +37,7 @@ const DetailProgram = () => {
       .catch((err) => setError(err.message));
   }, [id]); // Gunakan ID sebagai dependency, berarti ketika idnya berupa fetch datanya
 
-  if (error) return <div>Error cok: {error}</div>;
+  if (error) return <div>Error: {error}</div>;
   if (!program) return <div>Loading...</div>;
 
   return (
@@ -43,7 +55,10 @@ const DetailProgram = () => {
       }
       tombol={
         <>
-          <Button onClick={handleStartProgram} className="absolute bottom-0 right-0 font-bold py-4">
+          <Button
+            onClick={handleStartProgram}
+            className="absolute bottom-0 right-0 font-bold py-4"
+          >
             Mulai Program
           </Button>
         </>

@@ -8,15 +8,6 @@ import { Check } from "lucide-react";
 import Card from "../components/Card/index";
 import axios from "axios";
 
-// const steps = [
-//   { id: 1, completed: true },
-//   { id: 2, completed: false },
-//   { id: 3, completed: false },
-//   { id: 4, completed: false },
-//   { id: 5, completed: false },
-//   { id: 6, completed: false },
-//   { id: 7, completed: false },
-// ];
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
@@ -71,7 +62,7 @@ const Dashboard = () => {
       }
 
       // alert(response.data.message);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       alert("Gagal memperbarui status makanan");
       console.error(error);
@@ -183,7 +174,7 @@ const Dashboard = () => {
 
       setDashboardData(response.data.data);
       setCurrentStep(response.data.data.dayNumber); // Set current step berdasarkan dayNumber dari API
-      console.log(response.data.data);
+      // console.log(response.data.data);
     } catch (err) {
       setError("data gagal di ambil");
       setDashboardData(null);
