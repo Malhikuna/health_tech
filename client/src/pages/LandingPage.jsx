@@ -30,6 +30,7 @@ export default function LandingPage() {
     setIsLoggedIn(!!token); // true jika token ada
   }, []);
 
+
   return (
     <div className="">
       <div
